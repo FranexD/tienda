@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -11,11 +10,9 @@
   <body>
     <header>
       <h1>Bienvenido a la Tienda de Mascotas</h1>
-      <img src="{% static 'images/logo.jpg' %}" alt="Logo Tienda" />
     </header>
-
     <nav>
-      <a href="{% url 'index' %}">Inicio</a>
+      <a class="funciona" href="{% url 'index' %}">Inicio</a>
       <a href="{% url 'secundaria' %}">Catálogo</a>
       <a href="{% url 'contacto' %}">Contacto</a>
       <a href="{% url 'precio_bitcoin' %}">bitcoin</a>
@@ -23,10 +20,13 @@
 
     <section>
       <h2>Sobre nuestra tienda</h2>
-      <p>
+      <p class="descripcion">
         Somos la tienda líder en productos para mascotas, ofreciendo calidad y
         variedad.
       </p>
     </section>
+    <div class="logo-imagen">
+      <img src="{% static 'images/logo.jpg' %}" alt="Logo Tienda" />
+    </div>
   </body>
 </html>

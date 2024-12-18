@@ -6,24 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Catálogo - Tienda de Mascotas</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-    <script src="{% static 'js/carrito.js' %}" defer></script>
   </head>
   <body>
-    <nav>
-      <ul>
-        <li><a href="{% url 'index' %}">Inicio</a></li>
-        <li><a href="{% url 'secundaria' %}">Catálogo</a></li>
-        <a href="{% url 'contacto'%}">contacto</a></li>
-          <a href="{% url 'carrito' %}"
-            >Carrito (<span id="carrito-count">{{totalItemsCarrito}}</span>)</a
-          >
-        </li>
-      </ul>
-    </nav>
-
     <header>
       <h1>Catálogo de Productos</h1>
     </header>
+    <nav>
+      <a class="funciona" href="{% url 'index' %}">Inicio</a>
+      <a href="{% url 'secundaria' %}">Catálogo</a>
+      <a href="{% url 'contacto' %}">Contacto</a>
+      <a href="{% url 'precio_bitcoin' %}">bitcoin</a>
+      <a href="{% url 'carrito' %}"
+        >Carrito (<span id="carrito-count">{{totalItemsCarrito}}</span>)</a
+      >
+    </nav>
 
     <section class="secundaria">
       <h2>Productos disponibles</h2>

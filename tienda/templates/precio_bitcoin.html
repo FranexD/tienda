@@ -1,21 +1,29 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Precio del Bitcoin</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
   </head>
   <body>
-    <h1>Precio actual del Bitcoin</h1>
-
+    <header>
+      <h1>Precio actual del Bitcoin</h1>
+    </header>
+    <nav>
+      <a class="funciona" href="{% url 'index' %}">Inicio</a>
+      <a href="{% url 'secundaria' %}">Catálogo</a>
+      <a href="{% url 'contacto' %}">Contacto</a>
+    </nav>
     {% if error %}
     <p style="color: red">{{ error }}</p>
     {% else %}
-    <p><strong>Última actualización:</strong> {{ time_updated }}</p>
+    <p class="ultima-actualizacion">Última actualización: {{ time_updated }}</p>
     <ul>
-      <li><strong>USD:</strong> {{ usd_rate }} USD</li>
-      <li><strong>GBP:</strong> {{ gbp_rate }} GBP</li>
-      <li><strong>EUR:</strong> {{ eur_rate }} EUR</li>
+      <li>USD: {{ usd_rate }} USD</li>
+      <li>GBP: {{ gbp_rate }} GBP</li>
+      <li>EUR: {{ eur_rate }} EUR</li>
     </ul>
     {% endif %}
   </body>
