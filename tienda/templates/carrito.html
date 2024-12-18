@@ -11,7 +11,7 @@
 
     <div id="productos">
       <ul id="carrito">
-        {% for item in carrito %}
+        {% for item in cart %}
         <li>
           <img src="{{ item.imagen }}" alt="{{ item.nombre }}" />
           <p>{{ item.nombre }} - ${{ item.precio }}</p>

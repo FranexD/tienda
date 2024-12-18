@@ -11,12 +11,11 @@ urlpatterns = [
     path('carrito/', views.carrito, name='carrito'),
     path('eliminar_del_carrito/<int:producto_id>/', views.eliminar_del_carrito, name='eliminar_del_carrito'),
     path('vaciar_carrito/', views.vaciar_carrito, name='vaciar_carrito'),
-    path('api/', views.api_consumer, name='api_consumer'),
-    # path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
-    #path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+      # path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+
+    path('precio-bitcoin/', views.obtener_precio_bitcoin, name='precio_bitcoin'),
 ]
-
-
 
 
 
