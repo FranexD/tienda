@@ -6,6 +6,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('tienda.urls')),  # Incluir URLs de la app tienda
+    path('accounts/', include('django.contrib.auth.urls')),
 
 ]
 if settings.DEBUG:

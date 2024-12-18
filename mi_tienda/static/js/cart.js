@@ -29,9 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const addToCartButtons = document.querySelectorAll('.btn-agregar');
   addToCartButtons.forEach(button => {
     button.addEventListener('click', () => {
-      const productoId = button.getAttribute('data-id');
-      const productoNombre = button.getAttribute('data-nombre');
-      const productoPrecio = button.getAttribute('data-precio');
+      const productoId = button.getAttribute('id');
+      const productoNombre = button.getAttribute('nombre');
+      const productoPrecio = button.getAttribute('precio');
 
       const producto = { id: productoId, nombre: productoNombre, precio: productoPrecio };
       cart.push(producto);
