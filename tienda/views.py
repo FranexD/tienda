@@ -7,6 +7,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 import requests
+from django.http import HttpResponse
+
 
 
 
@@ -102,15 +104,31 @@ def carrito(request):
     return render(request, 'carrito.html', {'carrito': carrito, 'total': total})
 
 
-def api_consumer(request):
-    # URL de la API externa que deseas consumir
-    api_url = 'https://api.externa.com/data'
-    response = requests.get(api_url)
 
-    # Verificar que la respuesta sea exitosa
-    if response.status_code == 200:
-        data = response.json()  # Convertir la respuesta a formato JSON
-    else:
-        data = None
+def obtener_precio_bitcoin(request):
+    # URL de la API
+    url = "https://api.coindesk.com/v1/bpi/currentprice.json"
+    try:
+        # Hacer la petición a la API
+        response = requests.get(url)
+        response.raise_for_status()  # Lanza un error si la petición falla
 
-    return render(request, 'api_consumer.html', {'data': data})
+        # Parsear la respuesta JSON
+        data = response.json()
+
+        # Extraer los datos necesarios
+        context = {
+            'time_updated': data['time']['updated'],
+            'usd_rate': data['bpi']['USD']['rate'],
+            'gbp_rate': data['bpi']['GBP']['rate'],
+            'eur_rate': data['bpi']['EUR']['rate'],
+        }
+    except requests.exceptions.RequestException as e:
+        # Manejo de errores
+        context = {'error': f"No se pudo obtener la información: {str(e)}"}
+
+    # Renderizar el template con los datos
+    return render(request, 'precio_bitcoin.html', context)
+
+
+

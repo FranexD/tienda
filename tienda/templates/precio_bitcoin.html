@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Precio del Bitcoin</title>
+  </head>
+  <body>
+    <h1>Precio actual del Bitcoin</h1>
+
+    {% if error %}
+    <p style="color: red">{{ error }}</p>
+    {% else %}
+    <p><strong>Última actualización:</strong> {{ time_updated }}</p>
+    <ul>
+      <li><strong>USD:</strong> {{ usd_rate }} USD</li>
+      <li><strong>GBP:</strong> {{ gbp_rate }} GBP</li>
+      <li><strong>EUR:</strong> {{ eur_rate }} EUR</li>
+    </ul>
+    {% endif %}
+  </body>
+</html>
