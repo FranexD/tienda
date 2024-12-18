@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contacto - Tienda de Mascotas</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  </head>
+  <body>
+    <header>
+      <h1>Formulario de Contacto</h1>
+    </header>
+
+    <section>
+      <h2>Déjanos tu comentario</h2>
+      <form method="post">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+
+    <section>
+      <h2>Contactos Registrados</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Teléfono</th>
+            <th>Comentario</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for contacto in contactos %}
+          <tr>
+            <td>{{ contacto.nombre }}</td>
+            <td>{{ contacto.email }}</td>
+            <td>{{ contacto.telefono }}</td>
+            <td>{{ contacto.comentario }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+    <button onclick="window.location.href='{% url 'secundaria' %}'">
+      pagina anterior
+  </body>
+</html>

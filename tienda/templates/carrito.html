@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carrito de Compras</title>
+  </head>
+  <body>
+    <h1>Carrito de compras</h1>
+
+    <div id="productos">
+      <ul id="carrito">
+        {% for item in carrito %}
+        <li>
+          <img src="{{ item.imagen }}" alt="{{ item.nombre }}" />
+          <p>{{ item.nombre }} - ${{ item.precio }}</p>
+          <a href="{% url 'eliminar_del_carrito' item.id %}">Eliminar</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <p>Total: $<span id="total">{{ total }}</span></p>
+    <a href="{% url 'vaciar_carrito' %}">Vaciar carrito</a>
+  </body>
+</html>
