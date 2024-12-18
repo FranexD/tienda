@@ -16,12 +16,13 @@ def index(request):
 
 def secundaria(request):
     productos = Producto.objects.all()
-    return render(request, 'secundaria.html', {'productos': productos})
+    
+    totalItemsCarrito = len(request.session.get('carrito', []))
+    return render(request, 'secundaria.html', {'productos': productos, 'totalItemsCarrito':totalItemsCarrito})
 
 @login_required
 def contacto(request):
     # Si el formulario ha sido enviado y es válido, guarda los datos
-    print("CONTACTOSSSS")
     if request.method == 'POST':
         form = ContactoForm(request.POST)
         if form.is_valid():
@@ -36,10 +37,9 @@ def contacto(request):
 def agregar_al_carrito(request, producto_id):
     print("Productos en carrito")
     producto = get_object_or_404(Producto, id=producto_id)
-    carrito = request.session.get('carrito', [])
-    producto_en_carrito = next((item for item in carrito if item['id'] == producto.id), None)
+    carrito = request.session.get('carrito', []) # Obtiene los datos del navegador.
+    producto_en_carrito = next((item for item in carrito if item['id'] == producto.id), None) # Siguiente producto
     
-    print(producto_en_carrito)
     if producto_en_carrito:
         messages.info(request, f'El producto {producto.nombre} ya está en el carrito.')
     else:
@@ -95,14 +95,11 @@ def registro(request):
 
 
 def carrito(request):
-    carrito = request.session.get('cart', [])
-    #for value in carrito:
-    print(carrito)
+    carrito = request.session.get('carrito', [])
+    
    
     total = sum(item['precio'] for item in carrito)
-    
-    
-    return render(request, 'carrito.html', {'cart': carrito, 'total': total})
+    return render(request, 'carrito.html', {'carrito': carrito, 'total': total})
 
 
 def api_consumer(request):

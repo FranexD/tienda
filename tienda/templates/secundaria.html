@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Catálogo - Tienda de Mascotas</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-    <script src="{% static 'js/cart.js' %}" defer></script>
+    <script src="{% static 'js/carrito.js' %}" defer></script>
   </head>
   <body>
     <nav>
@@ -15,7 +15,7 @@
         <li><a href="{% url 'secundaria' %}">Catálogo</a></li>
         <a href="{% url 'contacto'%}">contacto</a></li>
           <a href="{% url 'carrito' %}"
-            >Carrito (<span id="cart-count">0</span>)</a
+            >Carrito (<span id="carrito-count">{{totalItemsCarrito}}</span>)</a
           >
         </li>
       </ul>
@@ -44,6 +44,7 @@
               id="{{ producto.id }}"
               nombre="{{ producto.nombre }}"
               precio="{{ producto.precio }}"
+              onclick="window.location.href='{% url 'agregar_al_carrito' producto.id %}'"
             >
               Agregar al carrito
             </button>
