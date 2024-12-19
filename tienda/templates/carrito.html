@@ -5,10 +5,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Carrito de Comprasss</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
   </head>
   <body>
-    <h1>Carrito de compras</h1>
-
+    <header>
+      <h1>Carrito de compras</h1>
+    </header>
+    <nav>
+      <a class="funciona" href="{% url 'index' %}">Inicio</a>
+      <a href="{% url 'secundaria' %}">Catálogo</a>
+      <a href="{% url 'contacto' %}">Contacto</a>
+      <a href="{% url 'precio_bitcoin' %}">bitcoin</a>
+    </nav>
     <div id="productos">
       <ul id="carrito">
         {% for item in carrito %}
